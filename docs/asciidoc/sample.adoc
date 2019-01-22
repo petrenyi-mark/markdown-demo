@@ -1,0 +1,101 @@
+= Sample doc
+Márk Petrényi <mark.petrenyi@icellmobilsoft.hu>
+v1.0, 2019-01-21
+:icons: font
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+tempor incididunt ut labore et dolore magna aliqua.
+
+== Level 2
+
+> simple quote
+
+[quote, John Doe, Some comments]
+____
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+____
+
+=== Level 3
+----
+Nunc sed velit dignissim sodales ut eu sem integer vitae. Laoreet non curabitur gravida arcu. Nunc scelerisque viverra mauris in aliquam sem fringilla ut morbi. Non pulvinar neque laoreet suspendisse interdum. In pellentesque massa placerat duis ultricies lacus sed turpis. Massa vitae tortor condimentum lacinia quis vel eros. Ac turpis egestas maecenas pharetra convallis posuere. A condimentum vitae sapien pellentesque habitant morbi tristique senectus. Aliquam ultrices sagittis orci a. Arcu dictum varius duis at. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Nibh venenatis cras sed felis eget velit.
+Bibendum est ultricies integer quis auctor elit sed vulputate mi.
+----
+
+[source, java]
+----
+public SummaryResponse getSummaryResponse() throws BaseException {
+        MBeanServerConnection server = ArtemisControlHelper.getMBeanServerConnection(artemisConfig.getJmxUrl());
+        ActiveMQServerControl serverControl = ArtemisControlHelper.getActiveMQServerControl(server, artemisConfig.getBrokerName());
+        SummaryType summaryType = new SummaryType();
+        String[] queues = serverControl.getQueueNames(RoutingType.ANYCAST.name());
+        for (String queue : queues) {
+            JmsDataType jmsDataType = new JmsDataType().withJmsType(JmsType.QUEUE).withName(queue);
+            jmsDataType.getMessages().addAll(queueMessages(queue));
+            summaryType.getJmsData().add(jmsDataType);
+        }
+        return response;
+    }
+----
+==== Level 4
+Formatted texts:
+//line comment
+////
+A multi-line comment.
+Line 2
+////
+
+* *bold*
+* _italic_
+* *_itbo_*
+* m**ix**__e__d
+* in_word_line
+* `monospace`(`AltGr + 7`)
+
+Other styling:
+
+. #highlighted#
+. [.underline]#underlined#
+. [.line-through]#striked#
+. [.small]#small print#
+
+http://www.google.com Google
+
+http://index.hu[Index]
+
+. List item one.
++
+List item one continued with a second paragraph followed by an
+Indented block.
++
+.................
+$ ls *.sh
+$ mv *.sh ~/tmp
+.................
++
+List item continued with a third paragraph.
+
+. List item two continued with an open block.
++
+--
+This paragraph is part of the preceding list item.
+
+.. This list is nested and does not require explicit item
+continuation.
++
+This paragraph is part of the preceding list item.
+
+.. List item b.
+
+This paragraph belongs to item two of the outer list.
+
+* [x] Write the press release
+* [*] Update the website
+* [ ] Contact the media
+
+--
+[[subPage]]
+
+include::dir/subPage.adoc[]

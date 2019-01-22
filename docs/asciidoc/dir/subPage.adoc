@@ -1,0 +1,13 @@
+[[subPage]]
+== This is a sub page
+some text
+
+NOTE: Additional notes to consider
+
+TIP: Place tips here
+
+IMPORTANT: Important stuff
+
+WARNING: I shall warn you
+
+CAUTION: Consider me
